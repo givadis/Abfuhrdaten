@@ -1,9 +1,14 @@
 ﻿Version=3
 NumberOfModules=0
 Build1=Default,ch.dorsum.b4i.abfuhrfdaten
-NumberOfFiles=0
-NumberOfLibraries=1
+NumberOfFiles=1
+File1=SideMenu.bil
+NumberOfLibraries=5
 Library1=icore
+Library2=istringutils
+Library3=itableview2
+Library4=isidemenu
+Library5=ihttp
 @EndOfDesignText@
 'Code module
 #Region  Project Attributes 
@@ -21,21 +26,64 @@ Sub Process_Globals
 	'Public variables can be accessed from all modules.
 	Public App As Application
 	Public NavControl As NavigationController
-	Private Page1 As Page
+	Private Page1, MenuPage As Page
+	
+	'DM Side Menu
+	Private smc As SideMenuController
+	Private smBtn1 As Button
 
 End Sub
 
 Private Sub Application_Start (Nav As NavigationController)
-	NavControl = Nav
+	'DM Side Menu
+	 Dim nc As NavigationController  
+	 nc.Initialize("nc") 
+	 NavControl= nc
+	'NavControl = Nav
 	Page1.Initialize("Page1")
 	Page1.Title = "Page 1"
+	Page1.RootPanel.Color = Colors.White
 	NavControl.ShowPage(Page1)
+	
+	'DM Side Menu
+     MenuPage.Initialize("SideMenu")
+	 MenuPage.RootPanel.LoadLayout("SideMenu")
+	 
+	 smc.Initialize(MenuPage, NavControl, Null) 
+	 smc.OpenGesturesEnabled = True 
+	 App.KeyController = smc  
+	 Page1.HideBackButton = True
+	 Page1.TopLeftButtons = Array(smc.CreateBarButton("SideMenu"))
 End Sub
 
-Private Sub Page1_Resize(Width As Int, Height As Int)
-	
-End Sub
+
+
+'DM Side Menu
+Private Sub Page1_Resize(Width As Int, Height As Int)  
+'You can limit the width of the pages  
+smc.LeftMenuMaxWidth = 70%x
+ End Sub  
 
 Private Sub Application_Background
 	
+End Sub
+
+Private Sub Page1_BarButtonClick (Tag As String)
+	Select Tag
+	'DM Side Menu
+	Case "SideMenu"
+		If  MenuPage.Visible Then
+		smc.CloseMenu
+		Else
+		smc.OpenLeftMenu
+		End If
+	End Select
+End Sub
+
+Private Sub Page1_BackgroundClick
+		If  MenuPage.Visible Then
+		smc.CloseMenu
+		Else
+		smc.OpenLeftMenu
+		End If
 End Sub

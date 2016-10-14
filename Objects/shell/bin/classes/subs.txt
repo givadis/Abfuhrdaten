@@ -1,19 +1,27 @@
 ch.dorsum.b4i.abfuhrfdaten
 0
 0
-main,application_background,0,0,33,35
+main,application_background,0,0,55,57
 
 
 
-main,application_start,0,1,21,27
-,navcontrol,,page1
-,navcontrol
+main,application_start,1,0,25,45
+,navcontrol,,page1,,menupage,,smbtn1,,smc,,app
+,navcontrol,,smbtn1
 
-main,page1_resize,0,0,29,31
+main,page1_backgroundclick,0,1,71,77
+,menupage,,smc
 
 
+main,page1_barbuttonclick,0,0,59,69
+,menupage,,smc
 
-main,process_globals,0,1,12,19
+
+main,page1_resize,0,0,50,53
+,smc
+
+
+main,process_globals,0,1,12,23
 
 
 
