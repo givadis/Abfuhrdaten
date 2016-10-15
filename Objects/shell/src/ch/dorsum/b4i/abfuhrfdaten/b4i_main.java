@@ -62,7 +62,10 @@ public static RemoteObject __c = RemoteObject.declareNull("B4ICommon");
 public static RemoteObject _app = RemoteObject.declareNull("B4IApplicationWrapper");
 public static RemoteObject _navcontrol = RemoteObject.declareNull("B4INavigationControllerWrapper");
 public static RemoteObject _page1 = RemoteObject.declareNull("B4IPage");
+public static RemoteObject _menupage = RemoteObject.declareNull("B4IPage");
+public static RemoteObject _smc = RemoteObject.declareNull("B4ISideMenuController");
+public static RemoteObject _smbtn1 = RemoteObject.declareNull("B4IButtonWrapper");
   public Object[] GetGlobals() {
-		return new Object[] {"App",b4i_main._app,"NavControl",b4i_main._navcontrol,"Page1",b4i_main._page1};
+		return new Object[] {"App",b4i_main._app,"MenuPage",b4i_main._menupage,"NavControl",b4i_main._navcontrol,"Page1",b4i_main._page1,"smBtn1",b4i_main._smbtn1,"smc",b4i_main._smc};
 }
 }
